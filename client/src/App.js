@@ -9,11 +9,11 @@ export default class App extends React.Component {
 	componentDidMount() {
 		fetch('http://localhost:5000/api/players')
 			.then((res) => {
-				console.log(res);
+				//console.log(res);
 				return res.json();
 			})
 			.then((json) => {
-				console.log(json);
+				//console.log(json);
 				this.setState({ players: json });
 			});
 	}
