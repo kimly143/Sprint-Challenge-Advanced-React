@@ -26,18 +26,6 @@ const styles = {
 };
 
 class PlayerCard extends React.Component {
-	state = '';
-	componentDidMount() {
-		fetch(this.props.player)
-			.then((res) => {
-				//console.log(res);
-				return res.json();
-			})
-			.then((json) => {
-				console.log(json);
-				this.setState({ player: json });
-			});
-	}
 	render() {
 		return (
 			<div className={this.props.classes.root}>
