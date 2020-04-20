@@ -3,14 +3,17 @@ import { withStyles } from '@material-ui/styles';
 
 const styles = {
 	root: {
-		margin: '1.25rem',
+        '.dark-mode &': {
+            background: '#2d200e'
+        },
+		margin: '1rem',
         border: 'thin solid gray',
         backgroundColor: '#e0f4ff',
-        opacity: '1',
 		padding: '1vh 1vw',
 		width: '20vw',
-		textAlign: 'center',	
-	},
+        textAlign: 'center',
+        borderRadius: '5px'	
+    },
 	country: {
 		padding: '5px',
 		color: 'gray',
