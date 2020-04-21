@@ -1,5 +1,6 @@
 .App {
-	background-image: url('/FIFA2019.png');
+	background-image:  linear-gradient(45deg, rgba(22, 19, 19, 0.5), rgba(47, 47, 120, 0.5)), url('/FIFA.jpg');
+
 	width: 100vw;
 }
 
@@ -57,12 +58,12 @@
 }
 
 .dark-mode__toggle {
-	background: gray;
+	background: rgb(27, 27, 27);
 	border-radius: 50px;
 	/* border: 1px solid black; */
 	height: 20px;
 	position: relative;
-	width: 40px;
+	width: 50px;
 }
 
 .dark-mode .App {
@@ -87,7 +88,7 @@
 }
 
 .navbar {
-	background-color: rgb#180909(143, 134, 134);
+	background-color: #180909;
 	color: tomato;
 	border: none;
 }

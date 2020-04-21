@@ -7,7 +7,8 @@ export default class App extends React.Component {
 	state = { players: [] };
 
 	componentDidMount() {
-		fetch('http://localhost:5000/api/players')
+		// fetch('http://localhost:5000/api/players')
+			fetch('/data.json')
 			.then((res) => {
 				//console.log(res);
 				return res.json();
