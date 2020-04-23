@@ -1,12 +1,13 @@
 import React from 'react';
 import App from './App';
-import { render, cleanup } from '@testing-library/react';
+import { render, cleanup, waitForDomChange } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 describe('App', () => {
 	afterEach(cleanup);
 
-	it('Render and Fetch correct data', () => {
+	it('Render and Fetch correct data', async () => {
+
     //setting up fetch to return fake data.
 		const json = [ { name: 'Pipper', country: 'Hill Country' } ];
 		const jsonPromise = Promise.resolve(json);
@@ -14,10 +15,15 @@ describe('App', () => {
 			json: () => jsonPromise
 		});
 
-    //mockImplementation run function i give it instead of real fetch, which is return a fake response above.
-		jest.spyOn(global, 'fetch').mockImplementation(() => responsePromise);
+    // jest.spyOn(object, methodName) create a mock function but also tracks call to object[methodName] and return a jest mock function.
+    // https://jestjs.io/docs/en/jest-object#jestspyonobject-methodname
+
+    // mockImplementation run function I give it instead of real fetch, which is return a fake response above.
+    jest.spyOn(global, 'fetch').mockImplementation(() => responsePromise);
+    
     //render the app
-		const { container } = render(<App />);
+    const { container } = render(<App />);
+    
     //expect the fetch will only call one and fetch with the correct url given.
 		expect(global.fetch).toHaveBeenCalledTimes(1);
 		expect(global.fetch).toHaveBeenCalledWith('http://localhost:5000/api/players');
@@ -29,8 +35,10 @@ describe('App', () => {
     //make sure players is render
 		const players = container.querySelector('.players');
     expect(players).toBeDefined();
+
+    // has to wait for the update to verify the length, the first render children of players on dom is empty.
+    await waitForDomChange({ container });
     
-    // has to wait for the update to verify the length, the first render is empty.
-    // expect(players.children.length).toEqual(1); 
+    expect(players.children.length).toEqual(1); 
 	});
 });
